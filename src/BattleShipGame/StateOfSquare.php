@@ -4,6 +4,7 @@ namespace App\BattleShipGame;
 
 
 use App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult;
+use App\BattleShipGame\Exception\StatusOfSquareCreatedWithInvalidState;
 
 class StateOfSquare extends ResultOfAttack
 {
@@ -12,7 +13,7 @@ class StateOfSquare extends ResultOfAttack
     /**
      * StateOfSquare constructor.
      * @param string $result
-     * @throws ResultOfAttackCreatedWithInvalidResult
+     * @throws StatusOfSquareCreatedWithInvalidState
      */
     public function __construct(string $result)
     {
@@ -20,7 +21,7 @@ class StateOfSquare extends ResultOfAttack
             parent::__construct($result);
         }catch (ResultOfAttackCreatedWithInvalidResult $attackCreatedWithInvalidResult){
             if(self::NOT_ATTACKED !== $result){
-                throw $attackCreatedWithInvalidResult;
+                throw new StatusOfSquareCreatedWithInvalidState();
             }
             $this->result = $result;
         }
