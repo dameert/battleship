@@ -21,6 +21,9 @@
         <testsuite name="Project Test Suite">
             <directory>tests/</directory>
         </testsuite>
+        <testsuite name="BattleShipDomain">
+            <directory>tests/BattleShipGame/</directory>
+        </testsuite>
     </testsuites>
 
     <filter>

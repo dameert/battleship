@@ -30,7 +30,7 @@ class VerticalSquarePosition
             throw new SquareCreatedWithInvalidVerticalId();
         }
 
-        $this->id = $id;
+        $this->id = $upperCaseLetter;
     }
 
     /**

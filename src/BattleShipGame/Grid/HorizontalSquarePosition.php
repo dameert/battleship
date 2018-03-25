@@ -19,7 +19,7 @@ class HorizontalSquarePosition
      */
     public function __construct(int $id)
     {
-        if ($id < 0 || $id > 9){
+        if ($id < 1 || $id > 10){
             throw new SquareCreatedWithInvalidHorizontalId();
         }
 

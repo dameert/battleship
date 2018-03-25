@@ -14,7 +14,7 @@ class Orientation
 
     const HORIZONTAL = 'horizontal';
     const VERTICAL = 'vertical';
-    const ORIENTATIONS = [self::HORIZONTAL, self::VERTICAL];
+    protected const ORIENTATIONS = [self::HORIZONTAL, self::VERTICAL];
 
     /**
      * Orientation constructor.

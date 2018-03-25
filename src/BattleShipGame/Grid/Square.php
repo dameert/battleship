@@ -46,12 +46,12 @@ class Square
         $orientationService = new OrientationService();
 
         $nextHorizontal =
-            $orientation === $orientationService->horizontal() ?
+            $orientation == $orientationService->horizontal() ?
                 $this->horizontalSquarePosition->nextHorizontalSquarePosition() :
                 $this->horizontalSquarePosition;
 
         $nextVertical =
-            $orientation === $orientationService->vertical() ?
+            $orientation == $orientationService->vertical() ?
                 $this->verticalSquarePosition->nextVerticalSquarePosition() :
                 $this->verticalSquarePosition;
 
