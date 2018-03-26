@@ -8,41 +8,35 @@ use App\BattleShipGame\Grid\Square;
 
 class PlacedShip extends Ship
 {
+
     /**
-     * @var Orientation
+     * @var Square[]
      */
-    private $orientation;
+    private $occupiedSquares;
 
     /**
      * PlacedShip constructor.
      * @param Ship $ship
+     * @param Square $startSquare
      * @param Orientation $orientation
+     * @throws Exception\OrientationCreatedWithInvalidOrientation
      * @throws Exception\ShipCreatedWithInvalidSize
+     * @throws Exception\SquareCreatedWithInvalidHorizontalId
+     * @throws Exception\SquareCreatedWithInvalidVerticalId
      */
-    public function __construct(Ship $ship, Orientation $orientation)
+    public function __construct(Ship $ship, Square $startSquare, Orientation $orientation)
     {
         parent::__construct($ship->name, $ship->numberOfSquares);
 
-        $this->orientation = $orientation;
+        $this->occupiedSquares = parent::occupiedSquares($startSquare, $orientation);
     }
 
     /**
-     * @return Orientation
-     */
-    public function getOrientation(): Orientation
-    {
-        return $this->orientation;
-    }
-
-    /**
-     * @param Square $startSquare
+     * @param Square $square
      * @return bool
-     * @throws Exception\SquareCreatedWithInvalidHorizontalId
-     * @throws Exception\SquareCreatedWithInvalidVerticalId
-     * @throws Exception\OrientationCreatedWithInvalidOrientation
      */
-    public function occupiesSquare(Square $startSquare): bool
+    public function occupiesSquare(Square $square): bool
     {
-        return in_array($startSquare, parent::occupiedSquares($startSquare, $this->orientation));
+        return in_array($square, $this->occupiedSquares);
     }
 }

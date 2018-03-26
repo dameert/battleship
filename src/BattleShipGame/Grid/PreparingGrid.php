@@ -6,6 +6,8 @@ namespace App\BattleShipGame\Grid;
 use App\BattleShipGame\Exception\GridCreatedWithInvalidSize;
 use App\BattleShipGame\Exception\ShipAddedOnAnotherShip;
 use App\BattleShipGame\Exception\ShipAddedOutsideOfGrid;
+use App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId;
+use App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId;
 use App\BattleShipGame\Orientation;
 use App\BattleShipGame\PlacedShip;
 use App\BattleShipGame\Ship;
@@ -22,8 +24,10 @@ class PreparingGrid extends Grid
         if ($size < 10 || $size > 26){
             throw new GridCreatedWithInvalidSize();
         }
-        $letters = range('A',  chr(ord('A')+$size));
 
+        parent::__construct();
+
+        $letters = range('A',  chr(ord('A')+$size-1));
         $gridSquares = [];
 
         foreach ($letters as $letter){
@@ -36,7 +40,8 @@ class PreparingGrid extends Grid
             $gridSquares = array_merge($gridSquares, $squares);
         }
 
-        parent::__construct($gridSquares, []);
+        $this->addSquares($gridSquares);
+
     }
 
     /**
@@ -60,7 +65,15 @@ class PreparingGrid extends Grid
      */
     public function addShip(Ship $ship, Square $startSquare, Orientation $orientation): void
     {
-        $occupiedSquares = $ship->occupiedSquares($startSquare, $orientation);
+        try { //TODO: refactor, a square should not be aware of Grid limits
+            $occupiedSquares = $ship->occupiedSquares($startSquare, $orientation);
+        } catch (SquareCreatedWithInvalidHorizontalId $squareCreatedWithInvalidHorizontalId)
+        {
+            throw new ShipAddedOutsideOfGrid();
+        } catch (SquareCreatedWithInvalidVerticalId $squareCreatedWithInvalidVerticalId)
+        {
+            throw new ShipAddedOutsideOfGrid();
+        }
 
         foreach ($occupiedSquares as $occupiedSquare){
             if (!$this->hasSquare($occupiedSquare)){
@@ -71,6 +84,6 @@ class PreparingGrid extends Grid
             }
         }
 
-        $this->placedShips[] = new PlacedShip($ship, $orientation);
+        $this->placedShips[] = new PlacedShip($ship, $startSquare, $orientation);
     }
 }

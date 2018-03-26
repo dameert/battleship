@@ -27,7 +27,7 @@ class Grid
      * @param array $squares
      * @param array $placedShips
      */
-    public function __construct(array $squares, array $placedShips)
+    public function __construct(array $squares = [], array $placedShips = [])
     {
         $this->squares = $squares;
         $this->placedShips = $placedShips;
@@ -48,6 +48,7 @@ class Grid
      * @return bool
      * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId
      * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId
+     * @throws \App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation
      */
     protected function squareHasShip(Square $square): bool
     {
@@ -57,5 +58,13 @@ class Grid
             }
         }
         return false;
+    }
+
+    /**
+     * @param Square[] $squares
+     */
+    protected function addSquares(array $squares): void
+    {
+        $this->squares = array_merge($this->squares, $squares);
     }
 }

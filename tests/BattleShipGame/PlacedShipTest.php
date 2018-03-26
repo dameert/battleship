@@ -23,18 +23,17 @@ class PlacedShipTest extends DomainTest
     public function setUp()
     {
         parent::setUp();
-        $this->ship = new Ship("Titanic", 3);
+        $this->ship = new Ship("Titanic", $this->mediumNumberOfSquares);
 
     }
 
     public function testPlacedShipCreation(): void
     {
-        $placedShip = new PlacedShip($this->ship, $this->orientationService->horizontal());
+        $square = $this->gridService->square(1, 'a');
+        $placedShip = new PlacedShip($this->ship, $square, $this->orientationService->horizontal());
 
         $this->assertEquals("Titanic", "$placedShip", "The placed ship is not properly converted to string");
-        $this->assertEquals($this->orientationService->horizontal(), $placedShip->getOrientation(), "The orientation of the placed ship is not as expected");
-
-        $occupiedSquaresHorizontal = $placedShip->occupiedSquares($this->gridService->square(1, "A"), $this->orientationService->horizontal());
+        $occupiedSquaresHorizontal = $placedShip->occupiedSquares($square, $this->orientationService->horizontal());
 
         $horizontalSquares = [];
 

@@ -15,6 +15,7 @@ class PlayableGrid extends Grid
     /**
      * @param Square $attackedSquare
      * @return ResultOfAttack
+     * @throws \App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation
      * @throws \App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult
      * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId
      * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId
@@ -28,5 +29,22 @@ class PlayableGrid extends Grid
         }
 
         return $this->gridService->miss();
+    }
+
+    /**
+     * @param Ship $ship
+     * @return bool
+     */
+    private function isShipFloating(Ship $ship): bool
+    {
+
+    }
+
+    /**
+     * @return bool
+     */
+    private function isFleetFloating(): bool
+    {
+
     }
 }
