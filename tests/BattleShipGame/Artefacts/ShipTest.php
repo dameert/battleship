@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\BattleShipGame;
+namespace App\Tests\BattleShipGame\Artefacts;
 
 
 use App\BattleShipGame\Exception\ShipCreatedWithInvalidSize;
-use App\BattleShipGame\Ship;
+use App\BattleShipGame\Artefacts\Ship;
 use App\Tests\DomainTest;
 
 class ShipTest extends DomainTest
@@ -34,19 +34,19 @@ class ShipTest extends DomainTest
     {
         $this->expectException(ShipCreatedWithInvalidSize::class);
 
-        new Ship("Titanic", $this->minimumNumberOfSquares-1);
+        new \App\BattleShipGame\Artefacts\Ship("Titanic", $this->minimumNumberOfSquares-1);
     }
 
     public function testShipCreationTooBig(): void
     {
         $this->expectException(ShipCreatedWithInvalidSize::class);
 
-        new ship("Titanic", $this->maximumNumberOfSquares+1);
+        new \App\BattleShipGame\Artefacts\ship("Titanic", $this->maximumNumberOfSquares+1);
     }
 
     public function testShipCreation(): void
     {
-        $ship = new Ship("Titanic", $this->mediumNumberOfSquares);
+        $ship = new \App\BattleShipGame\Artefacts\Ship("Titanic", $this->mediumNumberOfSquares);
 
         $this->assertEquals("Titanic", "$ship", "The ship is not properly converted to string");
 

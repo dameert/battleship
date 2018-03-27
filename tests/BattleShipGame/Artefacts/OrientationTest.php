@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\BattleShipGame;
+namespace App\Tests\BattleShipGame\Artefacts;
 
 
 use App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation;
-use App\BattleShipGame\Orientation;
+use App\BattleShipGame\Artefacts\Orientation;
 use App\Tests\DomainTest;
 
 class OrientationTest extends DomainTest
@@ -18,19 +18,19 @@ class OrientationTest extends DomainTest
     {
         $this->expectException(OrientationCreatedWithInvalidOrientation::class);
 
-        new Orientation($this->invalidOrientation);
+        new \App\BattleShipGame\Artefacts\Orientation($this->invalidOrientation);
     }
 
     public function testHorizontalOrientationCreation(): void
     {
-        $orientation = new Orientation(Orientation::HORIZONTAL);
+        $orientation = new \App\BattleShipGame\Artefacts\Orientation(Orientation::HORIZONTAL);
 
         $this->assertEquals($this->orientationService->horizontal(), $orientation, "Could not create HORIZONTAL orientation.");
     }
 
     public function testVerticalOrientationCreation(): void
     {
-        $orientation = new Orientation(Orientation::VERTICAL);
+        $orientation = new Orientation(\App\BattleShipGame\Artefacts\Orientation::VERTICAL);
 
         $this->assertEquals($this->orientationService->vertical(), $orientation, "Could not create VERTICAL orientation.");
     }

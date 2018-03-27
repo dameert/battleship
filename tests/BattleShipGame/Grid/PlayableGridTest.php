@@ -6,9 +6,9 @@ namespace App\Tests\BattleShipGame\Grid;
 use App\BattleShipGame\Grid\PlayableGrid;
 use App\BattleShipGame\Grid\PreparingGrid;
 use App\BattleShipGame\Grid\Square;
-use App\BattleShipGame\PlacedShip;
-use App\BattleShipGame\ResultOfAttack;
-use App\BattleShipGame\Ship;
+use App\BattleShipGame\Artefacts\PlacedShip;
+use App\BattleShipGame\Artefacts\ResultOfAttack;
+use App\BattleShipGame\Artefacts\Ship;
 use App\Tests\DomainTest;
 
 class PlayableGridTest extends DomainTest
@@ -24,7 +24,7 @@ class PlayableGridTest extends DomainTest
     private $nextSquare;
 
     /**
-     * @var Ship
+     * @var \App\BattleShipGame\Artefacts\Ship
      */
     private $ship;
 

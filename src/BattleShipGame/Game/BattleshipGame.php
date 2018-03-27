@@ -1,6 +1,6 @@
 <?php
 
-namespace App\BattleShipGame;
+namespace App\BattleShipGame\Game;
 
 
 class BattleshipGame

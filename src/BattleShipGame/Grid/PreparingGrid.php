@@ -8,9 +8,9 @@ use App\BattleShipGame\Exception\ShipAddedOnAnotherShip;
 use App\BattleShipGame\Exception\ShipAddedOutsideOfGrid;
 use App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId;
 use App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId;
-use App\BattleShipGame\Orientation;
-use App\BattleShipGame\PlacedShip;
-use App\BattleShipGame\Ship;
+use App\BattleShipGame\Artefacts\Orientation;
+use App\BattleShipGame\Artefacts\PlacedShip;
+use App\BattleShipGame\Artefacts\Ship;
 
 class PreparingGrid extends Grid
 {

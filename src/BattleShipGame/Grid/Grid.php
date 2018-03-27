@@ -3,7 +3,7 @@
 namespace App\BattleShipGame\Grid;
 
 
-use App\BattleShipGame\PlacedShip;
+use App\BattleShipGame\Artefacts\PlacedShip;
 
 class Grid
 {
@@ -13,7 +13,7 @@ class Grid
     protected $squares = [];
 
     /**
-     * @var PlacedShip[]
+     * @var \App\BattleShipGame\Artefacts\PlacedShip[]
      */
     protected $placedShips = [];
 

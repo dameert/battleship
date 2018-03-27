@@ -7,7 +7,7 @@ use App\BattleShipGame\Exception\GridCreatedWithInvalidSize;
 use App\BattleShipGame\Exception\ShipAddedOnAnotherShip;
 use App\BattleShipGame\Exception\ShipAddedOutsideOfGrid;
 use App\BattleShipGame\Grid\PreparingGrid;
-use App\BattleShipGame\Ship;
+use App\BattleShipGame\Artefacts\Ship;
 use App\Tests\DomainTest;
 
 class PreparingGridTest extends DomainTest

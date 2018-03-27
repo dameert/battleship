@@ -1,10 +1,9 @@
 <?php
 
-namespace App\BattleShipGame;
+namespace App\BattleShipGame\Artefacts;
 
-
+use App\BattleShipGame\Exception;
 use App\BattleShipGame\Grid\Square;
-
 
 class PlacedShip extends Ship
 {

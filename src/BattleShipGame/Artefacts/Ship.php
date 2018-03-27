@@ -1,10 +1,12 @@
 <?php
 
-namespace App\BattleShipGame;
+namespace App\BattleShipGame\Artefacts;
 
 
+use App\BattleShipGame\Exception;
 use App\BattleShipGame\Exception\ShipCreatedWithInvalidSize;
 use App\BattleShipGame\Grid\Square;
+use App\BattleShipGame\Artefacts\Orientation;
 
 class Ship
 {

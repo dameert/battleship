@@ -3,8 +3,8 @@
 namespace App\BattleShipGame\Grid;
 
 
-use App\BattleShipGame\PlacedShip;
-use App\BattleShipGame\ResultOfAttack;
+use App\BattleShipGame\Artefacts\PlacedShip;
+use App\BattleShipGame\Artefacts\ResultOfAttack;
 
 class PlayableGrid extends Grid
 {
@@ -15,7 +15,7 @@ class PlayableGrid extends Grid
 
     /**
      * @param Square $attackedSquare
-     * @return ResultOfAttack
+     * @return \App\BattleShipGame\Artefacts\ResultOfAttack
      * @throws \App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult
      */
     public function attack(Square $attackedSquare): ResultOfAttack

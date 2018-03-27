@@ -3,9 +3,9 @@
 namespace App\BattleShipGame\Grid;
 
 
-use App\BattleShipGame\Orientation;
-use App\BattleShipGame\ResultOfAttack;
-use App\BattleShipGame\ResultOfAttackService;
+use App\BattleShipGame\Artefacts\Orientation;
+use App\BattleShipGame\Artefacts\ResultOfAttack;
+use App\BattleShipGame\Artefacts\ResultOfAttackService;
 
 class GridService
 {
@@ -44,7 +44,7 @@ class GridService
     }
 
     /**
-     * @return ResultOfAttack
+     * @return \App\BattleShipGame\Artefacts\ResultOfAttack
      * @throws \App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult
      */
     public function hit(): ResultOfAttack
@@ -53,7 +53,7 @@ class GridService
     }
 
     /**
-     * @return ResultOfAttack
+     * @return \App\BattleShipGame\Artefacts\ResultOfAttack
      * @throws \App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult]
      */
     public function miss(): ResultOfAttack
@@ -71,7 +71,7 @@ class GridService
     }
 
     /**
-     * @return ResultOfAttack
+     * @return \App\BattleShipGame\Artefacts\ResultOfAttack
      * @throws \App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult
      */
     public function fleetDestroyed(): ResultOfAttack

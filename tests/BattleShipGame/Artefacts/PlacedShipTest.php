@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Tests\BattleShipGame;
+namespace App\Tests\BattleShipGame\Artefacts;
 
 
 use App\BattleShipGame\Exception\ShipCreatedWithInvalidSize;
-use App\BattleShipGame\PlacedShip;
-use App\BattleShipGame\Ship;
+use App\BattleShipGame\Artefacts\PlacedShip;
+use App\BattleShipGame\Artefacts\Ship;
 use App\Tests\DomainTest;
 
 class PlacedShipTest extends DomainTest
@@ -31,7 +31,7 @@ class PlacedShipTest extends DomainTest
     {
         $square = $this->gridService->square(1, 'a');
         $occupiedSquares = $this->ship->calculateOccupiedSquares($square, $this->orientationService->horizontal());
-        $placedShip = new PlacedShip($this->ship, $occupiedSquares);
+        $placedShip = new \App\BattleShipGame\Artefacts\PlacedShip($this->ship, $occupiedSquares);
 
         $this->assertEquals("Titanic", "$placedShip", "The placed ship is not properly converted to string");
         $occupiedSquaresHorizontal = $placedShip->calculateOccupiedSquares($square, $this->orientationService->horizontal());

@@ -4,8 +4,8 @@ namespace App\BattleShipGame\Grid;
 
 use App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId;
 use App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId;
-use App\BattleShipGame\Orientation;
-use App\BattleShipGame\OrientationService;
+use App\BattleShipGame\Artefacts\Orientation;
+use App\BattleShipGame\Artefacts\OrientationService;
 
 class Square
 {
@@ -35,7 +35,7 @@ class Square
     }
 
     /**
-     * @param Orientation $orientation
+     * @param \App\BattleShipGame\Artefacts\Orientation $orientation
      * @return Square
      * @throws SquareCreatedWithInvalidHorizontalId
      * @throws SquareCreatedWithInvalidVerticalId

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\BattleShipGame;
+namespace App\Tests\BattleShipGame\Artefacts;
 
 use App\BattleShipGame\Exception\StatusOfSquareCreatedWithInvalidState;
-use App\BattleShipGame\StateOfSquare;
+use App\BattleShipGame\Artefacts\StateOfSquare;
 use App\Tests\DomainTest;
 
 class StateOfSquareTest extends DomainTest

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\BattleShipGame;
+namespace App\BattleShipGame\Artefacts;
 
 
+use App\BattleShipGame\Artefacts\ResultOfAttack;
 use App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult;
 use App\BattleShipGame\Exception\StatusOfSquareCreatedWithInvalidState;
 

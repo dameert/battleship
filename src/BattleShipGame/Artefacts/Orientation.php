@@ -1,6 +1,6 @@
 <?php
 
-namespace App\BattleShipGame;
+namespace App\BattleShipGame\Artefacts;
 
 
 use App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation;

@@ -3,9 +3,9 @@
 namespace App\Tests;
 
 use App\BattleShipGame\Grid\GridService;
-use App\BattleShipGame\OrientationService;
-use App\BattleShipGame\ResultOfAttackService;
-use App\BattleShipGame\StateOfSquareService;
+use App\BattleShipGame\Artefacts\OrientationService;
+use App\BattleShipGame\Artefacts\ResultOfAttackService;
+use App\BattleShipGame\Artefacts\StateOfSquareService;
 use PHPUnit\Framework\TestCase;
 
 class DomainTest extends TestCase
@@ -16,17 +16,17 @@ class DomainTest extends TestCase
     protected $gridService;
 
     /**
-     * @var OrientationService
+     * @var \App\BattleShipGame\Artefacts\OrientationService
      */
     protected $orientationService;
 
     /**
-     * @var ResultOfAttackService
+     * @var \App\BattleShipGame\Artefacts\ResultOfAttackService
      */
     protected $resultOfAttackService;
 
     /**
-     * @var StateOfSquareService
+     * @var \App\BattleShipGame\Artefacts\StateOfSquareService
      */
     protected $stateOfSquareService;
 
