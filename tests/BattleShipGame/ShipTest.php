@@ -50,8 +50,8 @@ class ShipTest extends DomainTest
 
         $this->assertEquals("Titanic", "$ship", "The ship is not properly converted to string");
 
-        $occupiedSquaresHorizontal = $ship->occupiedSquares($this->gridService->square(1, "A"), $this->orientationService->horizontal());
-        $occupiedSquaresVertical = $ship->occupiedSquares($this->gridService->square(1, "A"), $this->orientationService->vertical());
+        $occupiedSquaresHorizontal = $ship->calculateOccupiedSquares($this->gridService->square(1, "A"), $this->orientationService->horizontal());
+        $occupiedSquaresVertical = $ship->calculateOccupiedSquares($this->gridService->square(1, "A"), $this->orientationService->vertical());
 
         $horizontalSquares = [];
         $verticalSquares = [];

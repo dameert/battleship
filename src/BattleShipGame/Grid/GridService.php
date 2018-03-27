@@ -60,4 +60,13 @@ class GridService
     {
         return $this->resultOfAttackService->miss();
     }
+
+    /**
+     * @return ResultOfAttack
+     * @throws \App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult
+     */
+    public function sunk(): ResultOfAttack
+    {
+        return $this->resultOfAttackService->sunk();
+    }
 }

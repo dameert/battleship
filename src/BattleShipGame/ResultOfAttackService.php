@@ -21,4 +21,13 @@ class ResultOfAttackService
     {
         return new ResultOfAttack(ResultOfAttack::MISS);
     }
+
+    /**
+     * @return ResultOfAttack
+     * @throws Exception\ResultOfAttackCreatedWithInvalidResult
+     */
+    public function sunk(): ResultOfAttack
+    {
+        return new ResultOfAttack(ResultOfAttack::SUNK);
+    }
 }

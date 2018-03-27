@@ -14,7 +14,8 @@ class ResultOfAttack
 
     const HIT = 'hit';
     const MISS = 'miss';
-    protected const RESULTS = [self::HIT, self::MISS];
+    const SUNK = 'sunk';
+    protected const RESULTS = [self::HIT, self::MISS, self::SUNK];
 
     /**
      * ResultOfAttack constructor.

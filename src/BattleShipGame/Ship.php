@@ -50,7 +50,7 @@ class Ship
      * @throws Exception\SquareCreatedWithInvalidVerticalId
      * @throws Exception\OrientationCreatedWithInvalidOrientation
      */
-    public function occupiedSquares(Square $startSquare, Orientation $orientation): array
+    public function calculateOccupiedSquares(Square $startSquare, Orientation $orientation): array
     {
         $squares = [$startSquare];
 

@@ -45,16 +45,13 @@ class Grid
 
     /**
      * @param Square $square
-     * @return bool
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId
-     * @throws \App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation
+     * @return PlacedShip|bool
      */
-    protected function squareHasShip(Square $square): bool
+    protected function squareHasShip(Square $square)
     {
         foreach ($this->placedShips as $placedShip){
             if ($placedShip->occupiesSquare($square)) {
-                return true;
+                return $placedShip;
             }
         }
         return false;

@@ -17,18 +17,14 @@ class PlacedShip extends Ship
     /**
      * PlacedShip constructor.
      * @param Ship $ship
-     * @param Square $startSquare
-     * @param Orientation $orientation
-     * @throws Exception\OrientationCreatedWithInvalidOrientation
+     * @param array $occupiedSquares
      * @throws Exception\ShipCreatedWithInvalidSize
-     * @throws Exception\SquareCreatedWithInvalidHorizontalId
-     * @throws Exception\SquareCreatedWithInvalidVerticalId
      */
-    public function __construct(Ship $ship, Square $startSquare, Orientation $orientation)
+    public function __construct(Ship $ship, array $occupiedSquares)
     {
         parent::__construct($ship->name, $ship->numberOfSquares);
 
-        $this->occupiedSquares = parent::occupiedSquares($startSquare, $orientation);
+        $this->occupiedSquares = $occupiedSquares;
     }
 
     /**
@@ -38,5 +34,13 @@ class PlacedShip extends Ship
     public function occupiesSquare(Square $square): bool
     {
         return in_array($square, $this->occupiedSquares);
+    }
+
+    /**
+     * @return Square[]
+     */
+    public function occupiedSquares(): array
+    {
+        return $this->occupiedSquares;
     }
 }

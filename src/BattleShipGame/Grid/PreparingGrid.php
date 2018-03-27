@@ -66,7 +66,7 @@ class PreparingGrid extends Grid
     public function addShip(Ship $ship, Square $startSquare, Orientation $orientation): void
     {
         try { //TODO: refactor, a square should not be aware of Grid limits
-            $occupiedSquares = $ship->occupiedSquares($startSquare, $orientation);
+            $occupiedSquares = $ship->calculateOccupiedSquares($startSquare, $orientation);
         } catch (SquareCreatedWithInvalidHorizontalId $squareCreatedWithInvalidHorizontalId)
         {
             throw new ShipAddedOutsideOfGrid();
@@ -84,6 +84,6 @@ class PreparingGrid extends Grid
             }
         }
 
-        $this->placedShips[] = new PlacedShip($ship, $startSquare, $orientation);
+        $this->placedShips[] = new PlacedShip($ship, $occupiedSquares);
     }
 }

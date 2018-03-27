@@ -30,10 +30,11 @@ class PlacedShipTest extends DomainTest
     public function testPlacedShipCreation(): void
     {
         $square = $this->gridService->square(1, 'a');
-        $placedShip = new PlacedShip($this->ship, $square, $this->orientationService->horizontal());
+        $occupiedSquares = $this->ship->calculateOccupiedSquares($square, $this->orientationService->horizontal());
+        $placedShip = new PlacedShip($this->ship, $occupiedSquares);
 
         $this->assertEquals("Titanic", "$placedShip", "The placed ship is not properly converted to string");
-        $occupiedSquaresHorizontal = $placedShip->occupiedSquares($square, $this->orientationService->horizontal());
+        $occupiedSquaresHorizontal = $placedShip->calculateOccupiedSquares($square, $this->orientationService->horizontal());
 
         $horizontalSquares = [];
 

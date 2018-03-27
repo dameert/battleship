@@ -3,6 +3,7 @@
 namespace App\BattleShipGame\Grid;
 
 
+use App\BattleShipGame\PlacedShip;
 use App\BattleShipGame\ResultOfAttack;
 
 class PlayableGrid extends Grid
@@ -15,29 +16,34 @@ class PlayableGrid extends Grid
     /**
      * @param Square $attackedSquare
      * @return ResultOfAttack
-     * @throws \App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation
      * @throws \App\BattleShipGame\Exception\ResultOfAttackCreatedWithInvalidResult
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId
      */
     public function attack(Square $attackedSquare): ResultOfAttack
     {
         $this->attackedSquares[] = $attackedSquare;
+        $attackedShip = $this->squareHasShip($attackedSquare);
 
-        if ($this->squareHasShip($attackedSquare)){
-            return $this->gridService->hit();
+        if ($attackedShip){
+            return $this->resultOfAttackOnShip($attackedShip);
         }
 
         return $this->gridService->miss();
     }
 
+    private function resultOfAttackOnShip(PlacedShip $ship): ResultOfAttack
+    {
+        return $this->isShipFloating($ship) ?
+            $this->gridService->hit() :
+            $this->gridService->sunk();
+    }
+
     /**
-     * @param Ship $ship
+     * @param PlacedShip $ship
      * @return bool
      */
-    private function isShipFloating(Ship $ship): bool
+    private function isShipFloating(PlacedShip $ship): bool
     {
-
+        return true;
     }
 
     /**
