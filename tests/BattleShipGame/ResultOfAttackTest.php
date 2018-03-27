@@ -48,4 +48,11 @@ class ResultOfAttackTest extends DomainTest
 
         $this->assertEquals($this->resultOfAttackService->sunk(), $state, "Could not create SUNK result of attack.");
     }
+
+    public function testFleetDestroyedResultOfAttackCreation(): void
+    {
+        $state = new ResultOfAttack(ResultOfAttack::FLEET_DESTROYED);
+
+        $this->assertEquals($this->resultOfAttackService->fleetDestroyed(), $state, "Could not create FLEET DESTROYED result of attack.");
+    }
 }

@@ -32,9 +32,15 @@ class PlayableGrid extends Grid
 
     private function resultOfAttackOnShip(PlacedShip $ship): ResultOfAttack
     {
-        return $this->isShipFloating($ship) ?
-            $this->gridService->hit() :
-            $this->gridService->sunk();
+        if ($this->isShipFloating($ship)) {
+            return $this->gridService->hit();
+        }
+
+        if ($this->isFleetFloating()) {
+            return $this->gridService->sunk();
+        }
+
+        return $this->gridService->fleetDestroyed();
     }
 
     /**
@@ -56,7 +62,12 @@ class PlayableGrid extends Grid
      */
     private function isFleetFloating(): bool
     {
-
+        foreach ($this->placedShips as $placedShip) {
+            if ($this->isShipFloating($placedShip)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

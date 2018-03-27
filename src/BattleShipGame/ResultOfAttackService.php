@@ -30,4 +30,13 @@ class ResultOfAttackService
     {
         return new ResultOfAttack(ResultOfAttack::SUNK);
     }
+
+    /**
+     * @return ResultOfAttack
+     * @throws Exception\ResultOfAttackCreatedWithInvalidResult
+     */
+    public function fleetDestroyed(): ResultOfAttack
+    {
+        return new ResultOfAttack(ResultOfAttack::FLEET_DESTROYED);
+    }
 }

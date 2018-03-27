@@ -6,6 +6,8 @@ namespace App\Tests\BattleShipGame\Grid;
 use App\BattleShipGame\Grid\PlayableGrid;
 use App\BattleShipGame\Grid\PreparingGrid;
 use App\BattleShipGame\Grid\Square;
+use App\BattleShipGame\PlacedShip;
+use App\BattleShipGame\ResultOfAttack;
 use App\BattleShipGame\Ship;
 use App\Tests\DomainTest;
 
@@ -62,16 +64,26 @@ class PlayableGridTest extends DomainTest
 
     public function testShipSunkAttack(): void
     {
-        $squaresOfShip = $this->ship->calculateOccupiedSquares($this->startSquare, $this->orientationService->vertical());
-        $attack = null;
-        foreach ($squaresOfShip as $square) {
-            $attack = $this->playableGrid->attack($square);
-        }
-
+        $attack = $attack = $this->sinkShip($this->startSquare);
         $this->assertEquals($this->resultOfAttackService->sunk(), $attack, "The attack should sink the ship, but another result is produced");
     }
 
     public function testAllShipsSunkAttack(): void
     {
+        $this->sinkShip($this->startSquare);
+        $attack = $this->sinkShip($this->nextSquare);
+
+        $this->assertEquals($this->resultOfAttackService->fleetDestroyed(), $attack, "The attack should destroy the fleet, but another result is produced");
+    }
+
+    private function sinkShip(Square $startSquare): ResultOfAttack
+    {
+        $squaresOfShip = $this->ship->calculateOccupiedSquares($startSquare, $this->orientationService->vertical());
+        $attack = null;
+        foreach ($squaresOfShip as $square) {
+            $attack = $this->playableGrid->attack($square);
+        }
+
+        return $attack;
     }
 }
