@@ -43,7 +43,12 @@ class PlayableGrid extends Grid
      */
     private function isShipFloating(PlacedShip $ship): bool
     {
-        return true;
+        foreach ($ship->occupiedSquares() as $square) {
+            if (!$this->squareIsAttacked($square)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -52,5 +57,14 @@ class PlayableGrid extends Grid
     private function isFleetFloating(): bool
     {
 
+    }
+
+    /**
+     * @param Square $square
+     * @return bool
+     */
+    private function squareIsAttacked(Square $square): bool
+    {
+        return in_array($square, $this->attackedSquares);
     }
 }
