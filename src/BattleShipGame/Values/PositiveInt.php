@@ -47,4 +47,13 @@ class PositiveInt
             return new PositiveInt(0);
         }
     }
+
+    /**
+     * @return PositiveInt
+     * @throws PositiveIntCannotBeSmallerThenZero
+     */
+    public static function zero(): PositiveInt
+    {
+        return new PositiveInt(0);
+    }
 }
