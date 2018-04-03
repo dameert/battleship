@@ -58,7 +58,7 @@ class PreparingGridTest extends DomainTest
         $grid->addShip($ship, $startSquare, $this->orientationService->vertical());
         $grid->addShip($ship, $nextSquare, $this->orientationService->vertical());
 
-        //TODO add assertion
+        $this->assertAttributeCount(2, 'placedShips', $grid);
 
     }
 
