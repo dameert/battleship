@@ -18,7 +18,7 @@ class StandardFleet extends Fleet
             ];
 
         foreach ($ships as $count => $ship) {
-            $this->addShips($ship, new PositiveInt($count));
+            $this->addShips($ship, new PositiveInt($count + 1));
         }
     }
 }
