@@ -59,8 +59,6 @@ class PreparingGrid extends Grid
      * @throws ShipAddedOnAnotherShip
      * @throws ShipAddedOutsideOfGrid
      * @throws \App\BattleShipGame\Exception\ShipCreatedWithInvalidSize
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId
      * @throws \App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation
      */
     public function addShip(Ship $ship, Square $startSquare, Orientation $orientation): void
