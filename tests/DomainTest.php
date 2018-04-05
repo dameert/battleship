@@ -2,6 +2,7 @@
 
 namespace App\Tests;
 
+use App\BattleShipGame\Game\PhaseService;
 use App\BattleShipGame\Grid\GridService;
 use App\BattleShipGame\Artefacts\OrientationService;
 use App\BattleShipGame\Artefacts\ResultOfAttackService;
@@ -16,19 +17,24 @@ class DomainTest extends TestCase
     protected $gridService;
 
     /**
-     * @var \App\BattleShipGame\Artefacts\OrientationService
+     * @var OrientationService
      */
     protected $orientationService;
 
     /**
-     * @var \App\BattleShipGame\Artefacts\ResultOfAttackService
+     * @var ResultOfAttackService
      */
     protected $resultOfAttackService;
 
     /**
-     * @var \App\BattleShipGame\Artefacts\StateOfSquareService
+     * @var StateOfSquareService
      */
     protected $stateOfSquareService;
+
+    /**
+     * @var PhaseService
+     */
+    protected $phaseService;
 
     /**
      * {@inheritdoc}
@@ -39,5 +45,6 @@ class DomainTest extends TestCase
         $this->orientationService = new OrientationService();
         $this->resultOfAttackService = new ResultOfAttackService();
         $this->stateOfSquareService = new StateOfSquareService();
+        $this->phaseService = new PhaseService();
     }
 }
