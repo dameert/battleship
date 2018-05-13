@@ -4,17 +4,40 @@ namespace App\Tests\BattleShipGame\Game;
 
 
 use App\BattleShipGame\Game\BattleshipGame;
+use App\BattleShipGame\Game\PhaseService;
 use App\Tests\DomainTest;
 
 class BattleShipGameTest extends DomainTest
 {
-    public function test()
+    /**
+     * @var BattleshipGame
+     */
+    private $game;
+
+    public function setUp()
+    {
+        parent::setUp();
+    }
+
+    public function testNewGame()
     {
         $game = new BattleshipGame();
-        $numberOfPlayers = 2;
+        $this->assertEquals($this->phaseService->preparing(), $game->phase(), "A new game is expected to be in the preparing phase.");
+    }
 
-        $this->assertAttributeCount($numberOfPlayers, 'players', $game, "The number of players in the game is incorrect.");
-        $this->assertAttributeCount($numberOfPlayers, 'fleets', $game, "The number of fleets in the game is incorrect.");
-        $this->assertAttributeCount($numberOfPlayers, 'grids', $game, "The number of grids in the game is incorrect.");
+    public function testGamePlay()
+    {
+        $this->game = new BattleshipGame();
+        $this->game->addShipsAtRandom($this->game->currentPlayer());
+        //$this->game->addShipsAtRandom($this->game->waitingPlayer());
+
+        $this->assertEquals($this->phaseService->playing(), $this->game->phase(), "The game is expected to be in the playing phase.");
+//        $this->assertEquals("Player 1", $game->currentPlayer(), "Player 1 is excpected to be the current player.");
+//        //Manual play
+//        $this->assertEquals("Computer", $game->currentPlayer(), "Computer is excpected to be the current player.");
+//        //Manual play
+//        $this->assertEquals("Player 1", $game->currentPlayer(), "Player 1 is excpected to be the current player.");
+//        //Autoplay computer
+//        $this->assertEquals("Player 1", $game->currentPlayer(), "Player 1 is excpected to be the current player.");
     }
 }

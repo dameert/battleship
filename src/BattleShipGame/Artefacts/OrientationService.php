@@ -21,4 +21,13 @@ class OrientationService
     {
         return new Orientation(Orientation::VERTICAL);
     }
+
+    /**
+     * @return Orientation
+     * @throws \App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation
+     */
+    public function randomOrientation(): Orientation
+    {
+        return new Orientation(Orientation::RANDOM);
+    }
 }

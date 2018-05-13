@@ -56,4 +56,12 @@ class PositiveInt
     {
         return new PositiveInt(0);
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->amount;
+    }
 }

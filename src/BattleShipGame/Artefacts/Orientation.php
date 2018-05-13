@@ -14,6 +14,7 @@ class Orientation
 
     const HORIZONTAL = 'horizontal';
     const VERTICAL = 'vertical';
+    const RANDOM = 'random';
     protected const ORIENTATIONS = [self::HORIZONTAL, self::VERTICAL];
 
     /**
@@ -23,6 +24,10 @@ class Orientation
      */
     public function __construct(string $orientation)
     {
+        if ($orientation === self::RANDOM) {
+            $orientation = self::ORIENTATIONS[rand(0,1)];
+        }
+
         if (!in_array($orientation, self::ORIENTATIONS)){
             throw new OrientationCreatedWithInvalidOrientation();
         }

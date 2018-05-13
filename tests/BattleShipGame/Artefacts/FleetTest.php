@@ -24,7 +24,11 @@ class FleetTest extends DomainTest
         $fleet->removeShip($ship);
         $this->assertNotEquals($emptyFleet, $fleet, "Removed one of two ships, fleet should not be empty.");
 
+        $this->assertFalse($fleet->isPlaced(), "An empty fleed is considered placed.");
+
         $fleet->removeShip($ship);
         $this->assertEquals($emptyFleet, $fleet, "Removed two of two ships, fleet should be empty.");
+
+        $this->assertTrue($fleet->isPlaced(), "An empty fleed is considered placed.");
     }
 }
