@@ -44,6 +44,11 @@ class PreparingGrid extends Grid
 
     }
 
+    public function maxSquare(): Square
+    {
+
+    }
+
     /**
      * @return PlayableGrid
      */

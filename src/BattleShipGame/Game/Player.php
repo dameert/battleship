@@ -61,13 +61,10 @@ class Player
      */
     public function addShip(Ship $ship, Square $startSquare, Orientation $orientation)
     {
-        echo "add ship";
         if ($this->fleet->hasShip($ship)) {
             $this->grid->addShip($ship,$startSquare, $orientation);
             $this->fleet->removeShip($ship);
-        }else{echo" OHNO";}
-
-        echo "ship added";
+        }
     }
 
     /**
@@ -85,5 +82,15 @@ class Player
     public function isReadyToPlay(): bool
     {
         return $this->fleet->isPlaced();
+    }
+
+    public function maxNumberOnGrid()
+    {
+
+    }
+
+    public function maxLetterOnGrid()
+    {
+        
     }
 }

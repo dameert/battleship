@@ -9,8 +9,6 @@ use App\BattleShipGame\Exception\AddShipToPlayerThatIsNotPartOfTheGame;
 use App\BattleShipGame\Exception\AddShipWhileNotInPreparingPhase;
 use App\BattleShipGame\Exception\PlayingTurnWhileNotCurrentPlayer;
 use App\BattleShipGame\Exception\PlayTurnWhileNotInPlayingPhase;
-use App\BattleShipGame\Exception\ShipAddedOnAnotherShip;
-use App\BattleShipGame\Exception\ShipAddedOutsideOfGrid;
 use App\BattleShipGame\Grid\GridService;
 use App\BattleShipGame\Grid\Square;
 
@@ -42,6 +40,11 @@ class BattleshipGame
     private $orientationService;
 
     /**
+     * @var RandomPreparationService
+     */
+    private $randomPreparationService;
+
+    /**
      * @var Player
      */
     private $currentPlayer;
@@ -61,6 +64,7 @@ class BattleshipGame
         $this->phaseService = new PhaseService();
         $this->gridService = new GridService();
         $this->orientationService = new OrientationService();
+        $this->randomPreparationService = new RandomPreparationService();
 
         $this->phase = $this->phaseService->preparing();
 
@@ -141,63 +145,20 @@ class BattleshipGame
      * @param Player $player
      * @throws AddShipToPlayerThatIsNotPartOfTheGame
      * @throws AddShipWhileNotInPreparingPhase
-     * @throws \App\BattleShipGame\Exception\FleetIsEmpty
      * @throws \App\BattleShipGame\Exception\InvalidPhaseCreated
-     * @throws \App\BattleShipGame\Exception\OrientationCreatedWithInvalidOrientation
-     * @throws \App\BattleShipGame\Exception\PositiveIntCannotBeSmallerThenZero
-     * @throws \App\BattleShipGame\Exception\ShipCreatedWithInvalidSize
-     * @throws \App\BattleShipGame\Exception\ShipTakenFromFleetThatIsNotPartOfThatFleet
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId
      */
     public function addShipsAtRandom(Player $player)
     {
-        echo "\n hello";
-        while (!$player->isReadyToPlay()) {
-            $ship = $player->randomShipFromFleet();
-            echo "\n NEW LOOP with ship: $ship";
-            $shipNotPlaced = true;
-
-            $square = $this->getSquare();
-            $orientation = $this->orientationService->vertical()q;
-            do {
-                try {
-                    $this->addShip($ship, $square, $orientation, $player);
-                } catch (ShipAddedOnAnotherShip $e) {
-                    echo "\n Ship on other ship";
-                    throw $e;
-                    continue;
-                } catch (ShipAddedOutsideOfGrid $e) {
-                    echo "\n Ship outside grid";
-                    throw $e;
-                    continue;
-                }
-
-                $shipNotPlaced = false;
-            } while ($shipNotPlaced);
-        }
-    }
-
-    /**
-     * @param int $maxRecursion
-     * @return Square
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidHorizontalId
-     * @throws \App\BattleShipGame\Exception\SquareCreatedWithInvalidVerticalId
-     */
-    private function getSquare($maxRecursion = 10): Square
-    {
-        $hardcodedLetterPositions = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-
-        try {
-            $square = $this->gridService->square(rand(1, 10), $hardcodedLetterPositions[rand(0,9)]);
-        } catch (\Exception $e) {
-            $square = false;
-            if (0 === $maxRecursion) {
-                return $this->gridService->square(1,'A');
-            }
+        if ($this->phaseService->preparing() != $this->phase) {
+            throw new AddShipWhileNotInPreparingPhase();
         }
 
-        return $square ? $square : $this->getSquare($maxRecursion - 1);
+        if (!in_array($player, $this->players)) {
+            throw new AddShipToPlayerThatIsNotPartOfTheGame();
+        }
+
+        $this->randomPreparationService->addAllShips($player);
+        $this->transitionForPreparingPhase();
     }
 
     /**
